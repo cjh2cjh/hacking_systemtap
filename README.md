@@ -7,3 +7,5 @@ This project is to store files and tools during my hacking into systemtap 4.0
 ## build
 * [Makefile targets](https://github.com/cjh2cjh/hacking_systemtap/wiki/Makefile-targets)
 
+## architecture
+* [Outline](https://github.com/cjh2cjh/hacking_systemtap/wiki/Main-maps)
