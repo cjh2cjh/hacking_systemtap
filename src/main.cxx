@@ -1346,6 +1346,12 @@ main (int argc, char * const argv [])
       }
     rcf.close();
 
+    /*
+    * cjh2cjh:
+    *
+    * clog: it is within 'std' namespace, and it is the standard output stream for logging.
+    * _F: what a clean printf like macro! see util.h for detail implementation.
+    */
     int extended_argc = words.we_wordc + argc;
     char **extended_argv = (char**) calloc (extended_argc + 1, sizeof(char*));
     if (rc || !extended_argv)
