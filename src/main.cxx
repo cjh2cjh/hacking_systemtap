@@ -1307,6 +1307,27 @@ main (int argc, char * const argv [])
     // and reasonably timely exit.
     setup_signals(&handle_interrupt);
 
+    /*
+    * cjh2cjh:
+    *
+    * s.data_path: should be 'SYSTEMTAP_DIR(environ variable)' if it presents, otherwise it is '~/.systemtap/'
+    *
+    * wordexp: do a shell-like expansion of the target string 'rcline'. 'words' stores the expansion result,
+    * within which 'wordexp_t->we_wordc' gives the number of words after expansion, and 
+    * 'wordexp_t->we_wordv' is a char** points to the array of words found. The expansion includes:
+    * 'tilde expansion', replace '~' by the user's home directory
+    * 'variable substitution', replace shell variable by the value of the environment variable of the same name
+    * 'command substitution', replay the command by the result of executing the command
+    * 'arithmetic expansion'
+    * 'field splitting'
+    * 'wildcard expansion'
+    * 'quote removal'
+    * 
+    * 'WRDE_NOCMD': do not do command substitution
+    * 'WRDE_UNDEF': considered it as an error if an undefined shell variable was expanded
+    * 'WRDE_APPEND': append words found to the array 'wordexp_t->we_wordv' resulting from previous call
+    */
+
     // PR13520: Parse $SYSTEMTAP_DIR/rc for extra options
     string rc_file = s.data_path + "/rc";
     ifstream rcf (rc_file.c_str());
