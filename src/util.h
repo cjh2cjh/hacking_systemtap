@@ -50,6 +50,17 @@ extern "C" {
 #include "privilege.h"
 #include "stringtable.h"
 
+/*
+* cjh2cjh:
+*
+* _F(format, ...):
+* A macro can be declared to accept a variable number of arguments much as a function can.
+* This kind of macro is called variadic. When the macro is invoked, all the tokens in its
+* argument list after the last named argument, including any commas,
+* become the variable argument. This sequence of tokens replaces the identifier __VA_ARGS__
+* in the macro body wherever it appears.
+*/
+
 #if ENABLE_NLS
 #define _(string) gettext(string)
 #define _N(string, string_plural, count) \
