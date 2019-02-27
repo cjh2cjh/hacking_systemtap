@@ -79,6 +79,25 @@ extern "C" {
 #define SEMANTIC_ERROR(...) semantic_error(ERR_SRC, __VA_ARGS__)
 #define PARSE_ERROR(...) parse_error(ERR_SRC, __VA_ARGS__)
 
+/*
+* cjh2cjh:
+*
+* std::string autosprintf(const char* format, ...) __attribute__ ((format (printf, 1, 2))):
+* The format attribute specifies that a function takes printf, scanf, strftime
+* or strfmon style arguments that should be type-checked against a format string.
+* So the compiler will check the arguments in calls to 'autosprintf' for consistency
+* with the printf style format string 'format'.
+* 
+* the format attribute has the form as:
+* format (archetype, string-index, first-to-check)
+* The parameter archetype determines how the format string is interpreted, and
+* should be printf, scanf, strftime, gnu_printf, gnu_scanf, gnu_strftime
+* or strfmon.
+* The parameter string-index specifies which argument is the format
+* string argument (starting from 1), while first-to-check is the number of the
+* first argument to check against the format string.
+*/
+
 const char *get_home_directory(void);
 size_t get_file_size(const std::string &path);
 size_t get_file_size(int fd);
