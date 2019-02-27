@@ -1416,6 +1416,21 @@ main (int argc, char * const argv [])
           rc = 1;
       }
 
+    /*
+    * cjh2cjh:
+    * 
+    * there are following different kinds of remote targets:
+    * direct
+    * ssh_legacy_remote
+    * direct_stapsh
+    * unix_stapsh
+    * libvirt_stapsh
+    * ssh_remote
+    *
+    * all these remote targets get the same session object resulting from the 'remote::create'
+    * function call above.
+    */
+
     // Discover and loop over each unique session created by the remote targets.
     set<systemtap_session*> sessions;
     for (unsigned i = 0; i < targets.size(); ++i)
