@@ -792,6 +792,18 @@ static vector<string>
 make_kernel_run_command (systemtap_session& s, const string& remotedir,
 			 const string& version)
 {
+  /*
+  * cjh2cjh:
+  *
+  * T object { arg1, arg2, ... };
+  * This is a new kind of list initialization since C++11, see:
+  * 'https://en.cppreference.com/w/cpp/language/list_initialization' for more detail
+  *
+  * BINDIR: It is a macro defined in command line during compiling, and
+  * it equals to '$prefix/bin'
+  * 
+  */
+
   // for now, just spawn staprun
   vector<string> cmd { getenv("SYSTEMTAP_STAPRUN") ?: BINDIR "/staprun" };
 
