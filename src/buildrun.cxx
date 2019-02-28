@@ -604,6 +604,20 @@ compile_pass (systemtap_session& s)
 }
 
 /*
+* cjh2cjh:
+*
+* kernel_built_uprobes: whether kernel support uprobe(user space probe)
+*
+* CONFIG_ARCH_SUPPORTS_UPROBES, CONFIG_UPROBES:
+* these kernel config options were dragged from '.config' under kernel build tree,
+* such as '/usr/src/kernels/3.10.0-957.el7.x86_64/.config'
+* if both are 'y', then inode uprobe was supported in kernel.
+*
+* unregister_uprobe:
+* see 'runtime/linux/uprobes-inode.c', what does it really mean?
+*/
+
+/*
  * If uprobes was built as part of the kernel build (either built-in
  * or as a module), the uprobes exports should show up.  This is to be
  * as distinct from the stap-built uprobes.ko from the runtime.
