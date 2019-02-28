@@ -19,6 +19,42 @@
  *
  */
 
+/*
+* cjh2cjh:
+*
+* _XOPEN_SOURCE, _BSD_SOURCE, _DEFAULT_SOURCE:
+* All are glibc feature test macros. Feature test macros were used to 
+* select different standard APIs or implementations exposed by header files.
+* In order to be effective, a feature test macro must be defined before 
+* including any header files. This can either be done in the compilation 
+* command (cc -DMACRO=value) or by defining the macro within the source code 
+* before including any headers.
+*
+* _XOPEN_SOURCE:
+* Functionality described in the X/Open Portability Guide is included.
+* This is a superset of the POSIX.1 and POSIX.2 functionality and
+* in fact _POSIX_SOURCE and _POSIX_C_SOURCE are automatically defined.
+* As the unification of all Unices, functionality only available in BSD and 
+* SVID is also included.
+*
+* _BSD_SOURCE:
+* Defining this macro with any value causes header files to expose BSD-derived 
+* definitions.
+* Defining this macro also causes BSD definitions to be preferred in some 
+* situations where standards conflict, unless one or more of _SVID_SOURCE, 
+* _POSIX_SOURCE, _POSIX_C_SOURCE, _XOPEN_SOURCE,  _XOPEN_SOURCE_EXTENDED,
+* or _GNU_SOURCE is defined, in which case BSD definitions are disfavored.
+*
+* _DEFAULT_SOURCE:
+* most features are included apart from X/Open, LFS and GNU extensions:
+* the effect is to enable features from the 2008 edition of POSIX, 
+* as well as certain BSD and SVID features without a separate feature test 
+* macro to control them.
+* 
+* Actually, no need to #define _BSD_SOURCE since _DEFAULT_SOURCE was defined.
+*
+*/
+
 #define _XOPEN_SOURCE
 #define _BSD_SOURCE
 #define _DEFAULT_SOURCE
