@@ -260,6 +260,18 @@ public:
   enum { color_never, color_auto, color_always } color_mode;
   enum { prologue_searching_never, prologue_searching_auto, prologue_searching_always } prologue_searching_mode;
 
+  /*
+  * cjh2cjh:
+  *
+  * dyninst_runtime:
+  * use 'dyninst' to profile a process in user mode.
+  * 'dyninst' provides a set of APIs to permit insertion of code into a running program,
+  * see 'https://dyninst.org/dyninst' for more detail.
+  *
+  * runtime_usermode_p: whether to profile a process in user mode.
+  * 
+  */
+  
   enum { kernel_runtime, dyninst_runtime, bpf_runtime } runtime_mode;
   bool runtime_usermode_p() const { return runtime_mode == dyninst_runtime; }
 
