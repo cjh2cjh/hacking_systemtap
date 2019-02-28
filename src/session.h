@@ -269,6 +269,7 @@ public:
   * see 'https://dyninst.org/dyninst' for more detail.
   *
   * runtime_usermode_p: whether to profile a process in user mode.
+  * 'runtime_mode' was set to 'dyninst_runtime' only if 'dyninst' was installed.
   * 
   */
   
