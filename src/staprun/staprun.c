@@ -82,6 +82,26 @@ static int remove_module(const char *name, int verb);
 
 static int stap_module_inserted = -1;
 
+/*
+* cjh2cjh:
+*
+* 'modname': a global variable defined in 'common.c'
+*
+* _exit: 
+* Any open file descriptors belonging to the process are closed;
+* any children of the process are inherited by process 1, init;
+* and the process’s parent is sent a SIGCHLD signal.
+* Unlike 'exit', this function does not call any functions registered 
+* with 'atexit' or 'on_exit'. Whether it flushes standard I/O buffers 
+* and removes temporary  files  created  with 'tmpfile' is 
+* implementation-dependent.
+* On the other hand, '_exit' does close open file descriptors, 
+* and this may cause an unknown delay, waiting for pending output to 
+* finish. Whether any pending I/O is canceled, and which pending I/O 
+* may be canceled upon _exit(), is implementation-dependent.
+*
+*/
+
 static void term_signal_handler(int signum __attribute ((unused)))
 {
 	if (stap_module_inserted == 0) {
