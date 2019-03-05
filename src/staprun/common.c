@@ -685,6 +685,13 @@ static int use_syslog = 0;
 
 void eprintf(const char *fmt, ...)
 {
+	/*
+	* cjh2cjh:
+	*
+	* LOG_ERR, log level
+	*
+	*/
+	
 	va_list va;
 	va_start(va, fmt);
 	if (use_syslog)
@@ -696,6 +703,15 @@ void eprintf(const char *fmt, ...)
 
 void switch_syslog(const char *name)
 {
+	/*
+	* cjh2cjh:
+	* 
+	* name: prepended to every log message
+	* LOG_PID: include PID with each log message
+	* LOG_DAEMON: specifies what type of program is logging the message.
+	* this means system daemons without seperate facility value.
+	*/
+	
 	openlog(name, LOG_PID, LOG_DAEMON);
 	use_syslog = 1;
 	color_errors = 0;
