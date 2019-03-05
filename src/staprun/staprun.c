@@ -116,6 +116,13 @@ void setup_term_signals(void)
 	sigset_t s;
 	struct sigaction a;
 
+	/*
+	* cjh2cjh:
+	*
+	* no need to block all signals?
+	*
+	*/
+	
 	/* blocking all signals while we set things up */
 	sigfillset(&s);
 	sigprocmask(SIG_SETMASK, &s, NULL);
