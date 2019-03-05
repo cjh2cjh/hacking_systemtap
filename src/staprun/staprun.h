@@ -78,6 +78,28 @@ extern char *parse_stap_color(const char *type);
 
 extern char *__name__;
 
+/*
+* cjh2cjh:
+*
+* In the ISO C standard of 1999, a macro can be declared to 
+* accept a variable number of arguments much as a function can.
+* The syntax for defining the macro is similar to that of
+* a function. Such as:
+* #define err(fmt, ...) do {} while (0)
+* Here, ... is a variable argument. In the invocation of such
+* a macro, it represents the zero or more tokens until the
+* closing parenthesis that ends the invocation, including
+* any commas. This set of tokens replaces the identifier
+* __VA_ARGS__ in the macro body whenever it appears.
+*
+* GCC has long supported variadic macros, and used a different
+* syntax that allow you to give a name to the variable arguments
+* just like any other arguments. Such as:
+* #define err(fmt, args...) do {} while (0)
+* 'args' is the name of the variable argument.
+*
+*/
+
 /* print to stderr */
 #define err(args...) do {	\
 		print_color("error");	\
