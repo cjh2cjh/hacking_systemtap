@@ -169,6 +169,21 @@ static int run_as(int exec_p, uid_t uid, gid_t gid, const char *path, char *cons
 
 	if (pid == 0) /* child process, or exec_p */
           {
+	    /*
+	    * cjh2cjh:
+	    *
+	    * setresuid:
+	    * Unprivileged user processes may change the real UID, 
+	    * effective UID, and saved set-user-ID, each to one of:
+	    * the current real UID, the current effective UID or 
+	    * the current saved set-user-ID.
+	    *
+	    * Privileged processes (on Linux, those having the 
+	    * CAP_SETUID capability) may set the real UID, effective
+	    * UID, and saved set-user-ID to arbitrary values.
+	    *
+	    */
+		
             /* Make sure we run as the full user.  If we're
              * switching to a non-root user, this won't allow
              * that process to switch back to root (since the
@@ -182,15 +197,47 @@ static int run_as(int exec_p, uid_t uid, gid_t gid, const char *path, char *cons
               exit(1);
             }
 
+	    /*
+	    * cjh2cjh:
+	    *
+	    * why use '_exit" here? not 'exit'?
+	    *
+	    * execv: 'path', name of the file to be executed
+	    *
+	    */
+		
             /* Actually run the command. */
             if (execv(path, argv) < 0)
               perror(path);
             _exit(1);
           }
 
+	/*
+	* cjh2cjh:
+	* 
+	* waitpid: '0' is the default flag, only wait for the
+	* child terminated.
+	* 
+	*/
+	
 	if (waitpid(pid, &rstatus, 0) < 0)
           return -1;
 
+	/*
+	* cjh2cjh:
+	*
+	* WIFEXITED: return true if the child terminated normally,
+	* that is by calling '_exit' or 'exit' or by returning from
+	* main()
+	* 
+	* WEXITSTATUS: returns the exit status of the child. 
+	* This consists of the least significant 8 bits of the status 
+	* argument that the child specified in a call to 'exit' or
+	* '_exit' or as the argument for a return statement in
+	* main().
+	*
+	*/
+	
 	if (WIFEXITED(rstatus))
           return WEXITSTATUS(rstatus);
 	return -1;
