@@ -26,6 +26,14 @@
 
 #include <linux/uaccess.h>
 
+/*
+* cjh2cjh:
+*
+* __DYNINST__: this macro was defined when compiling with dyninst.
+* see function 'compile_dyninst' in '../buildrun.cxx'
+*
+*/
+
 #elif defined(__DYNINST__)
 
 #include <sys/types.h>
