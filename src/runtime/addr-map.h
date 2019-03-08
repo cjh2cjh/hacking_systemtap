@@ -12,6 +12,16 @@
 #ifndef _ADDR_MAP_H_
 #define _ADDR_MAP_H_ 1
 
+/*
+* cjh2cjh:
+*
+* __KERNEL__: this macro was defined in the Makefile of package
+* 'kernel-devel'. If this macro was defined, it means we are
+* building a kernel module. See:
+* '/usr/src/kernels/3.10.0-862.el7.x86_64/Makefile' for example.
+*
+*/
+
 #if defined(__KERNEL__)
 
 #include <linux/uaccess.h>
