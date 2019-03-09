@@ -29,6 +29,17 @@
 
 #ifndef PR12970
 
+/*
+* cjh2cjh:
+*
+* STP_PRIVILEGE: user's privilege(same to session's privilege)
+* STP_PR_STAPDEV: whether the user has stapdev privilege
+* STP_PR_STAPSYS: whether the user has stapsys privilege
+* these macros were defined in function
+* 'translate_pass' in the file 'translate.cxx'
+*
+*/
+
 #if ! STP_PRIVILEGE_CONTAINS (STP_PRIVILEGE, STP_PR_STAPDEV) && \
     ! STP_PRIVILEGE_CONTAINS (STP_PRIVILEGE, STP_PR_STAPSYS)
 #include <asm/processor.h> /* For TASK_SIZE */
