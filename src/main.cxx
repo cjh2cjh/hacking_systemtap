@@ -1427,8 +1427,22 @@ main (int argc, char * const argv [])
     * libvirt_stapsh
     * ssh_remote
     *
-    * all these remote targets get the same session object resulting from the 'remote::create'
-    * function call above.
+    * the class hierarchy of these classes is:
+    * remote
+    *   direct
+    *   ssh_legacy_remote
+    *   stapsh
+    *     direct_stapsh
+    *     unix_stapsh
+    *     libvirt_stapsh
+    *     ssh_remote
+    *
+    * All these remote targets may create different session objects 
+    * during'remote::create' based on the original session object 's'.
+    * See 'stapsh::set_child_fds' and 'ssh_legacy_remote::get_uname'
+    * for detail. Differences between these session objects are that
+    * they have different 'arch' and 'kernel release version' fields.
+    * 
     */
 
     // Discover and loop over each unique session created by the remote targets.
