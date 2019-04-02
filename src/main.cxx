@@ -1531,6 +1531,14 @@ main (int argc, char * const argv [])
       return EXIT_FAILURE;
   }
   catch (const exit_exception& e) {
+      /*
+       * cjh2cjh:
+       *
+       * exit_exception: This exception was used to quickly exit
+       * with success or failure exit status code that stored in
+       * 'e.rc'.
+       */
+ 
       // Exiting for any quiet reason.
       return e.rc;
   }
