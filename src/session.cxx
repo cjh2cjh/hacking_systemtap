@@ -2664,6 +2664,16 @@ assert_no_interrupts()
 std::string
 systemtap_session::colorize(const std::string& str, const std::string& type)
 {
+  /*
+   * cjh2cjh:
+   *
+   * "\033" is the otc value of ESC in ascii encoding, and the
+   * sequence "\033[xxxm" is to indicate the console to set
+   * font color, and the sequence "\033[K" is to clear line
+   * content from current cursor to the end of line.
+   * 
+   */
+
   if (str.empty() || !color_errors)
     return str;
   else {
