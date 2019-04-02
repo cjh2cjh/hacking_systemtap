@@ -1442,6 +1442,8 @@ main (int argc, char * const argv [])
     * See 'stapsh::set_child_fds' and 'ssh_legacy_remote::get_uname'
     * for detail. Differences between these session objects are that
     * they have different 'arch' and 'kernel release version' fields.
+    * All these session objects become the sub-sessions stored in
+    * 's->subsessions'.
     * 
     */
 
