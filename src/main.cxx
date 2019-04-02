@@ -1513,6 +1513,20 @@ main (int argc, char * const argv [])
     return (rc) ? EXIT_FAILURE : EXIT_SUCCESS;
   }
   catch (const interrupt_exception& e) {
+      /*
+       * cjh2cjh:
+       *
+       * interrupt_exception: This exception was used to quickly exit 
+       * when there is pending interrupt. Thrown from 
+       * 'assert_no_interrupts()' which was
+       * used to check whether there is pending interrupt currently.
+       *
+       * EXIT_FAILURE: defined in <stdlib.h>
+       * this macro expand into integral expression that can be used 
+       * as arguments to the exit function, and indicate program 
+       * execution status. Usually it is 1.
+       */
+ 
       // User entered ctrl-c, exit quietly.
       return EXIT_FAILURE;
   }
