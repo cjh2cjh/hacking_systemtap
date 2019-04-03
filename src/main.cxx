@@ -943,6 +943,14 @@ passes_0_4 (systemtap_session &s)
           }
     }
 
+  /*
+   * cjh2cjh:
+   *
+   * sysconf (_SC_CLK_TCK): Get configuration information at runtime.
+   *   Get the number of clock ticks per second.
+   *  
+   */
+
   struct tms tms_after;
   times (& tms_after);
   unsigned _sc_clk_tck = sysconf (_SC_CLK_TCK);
