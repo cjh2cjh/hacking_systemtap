@@ -520,6 +520,31 @@ passes_0_4 (systemtap_session &s)
         {
           if (s.run_example)
             {
+              /*
+               * cjh2cjh:
+               *
+               * nftw: walks through the directory tree 'path_dir',
+               * calls 'collect_stp' once for each entry in the tree.
+               *
+               * FTW_ACTIONRETVAL: this flag is glibc-specific
+               * nftw() handles the return value from 'collect_stp' differently:
+               *
+               * FTW_CONTINUE: 
+               *   Instructs nftw() to continue normally
+               * FTW_SKIP_SIBLINGS: 
+               *   siblings of the current entry will be skipped, 
+               *   and processing continues in the parent
+               * FTW_SKIP_SUBTREE:
+               *   If 'collect_stp' is called with an entry that is a directory,
+               *   this return value will prevent objects within that directory 
+               *   from being passed as arguments to 'collect_stp'.
+               *   nftw() continues processing with the next sibling of the 
+               *   directory
+               * FTW_STOP:
+               *   Causes nftw() to return immediately with the return value 
+               *   FTW_STOP
+               */
+
               files.clear();
               path_dir = string(PKGDATADIR) + "/examples";
               (void) nftw(path_dir.c_str(), collect_stp, 1, FTW_ACTIONRETVAL);
