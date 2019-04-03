@@ -650,6 +650,14 @@ passes_0_4 (systemtap_session &s)
 
 	      for (auto it = files.begin(); it != files.end(); ++it)
 	        {
+                  /*
+                   * cjh2cjh:
+                   *
+                   * assert_no_interrupts: only used to exit quickly
+                   * when there is pending interrupt
+                   *
+                   */
+
 		  assert_no_interrupts();
 
 		  struct stat tapset_file_stat;
