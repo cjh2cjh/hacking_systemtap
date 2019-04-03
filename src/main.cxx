@@ -492,6 +492,13 @@ passes_0_4 (systemtap_session &s)
   // PASS 1a: PARSING LIBRARY SCRIPTS
   PROBE1(stap, pass1a__start, &s);
 
+  /*
+   * cjh2cjh:
+   *
+   * 'used_args': to trace whether command line args were really used
+   *
+   */
+
   // prep this array for tapset $n use too ... although we will reset once again for user scripts
   s.used_args.resize(s.args.size(), false);
   
